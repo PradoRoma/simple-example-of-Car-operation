@@ -1,0 +1,62 @@
+class Car:
+    gas = 0
+    mileage = 0
+    gas_tank = 100
+    rate_consumption = 0.1 #  расход: 10 топлива на 1 км
+    distance = 0
+
+    def describe(self):
+        print("Показатели машины: ")
+        print(f"Мои показатели бензина: {self.gas}  л.")
+        print(f"Мой пробег: {self.mileage} км.")
+
+    def fill(self, gas_l):  #Метод позволяет залить бензин в бензобак
+        self.gasoline_residue = self.gas_tank - self.gas
+        print(f'Вы можете залить в машину еще: {self.gasoline_residue} л. бензина')
+        if self.gas < self.gas_tank:
+            self.gas += gas_l
+            if self.gas >= self.gas_tank:
+                self.gas = self.gas_tank
+                print('Осторожно!')
+                print(f'Вы залили в меня {gas_l} л. бензина, но мой бензобак уже полон.')
+            else:
+                self.residue = self.gas_tank - self.gas
+                print(f'Вы залили в меня {gas_l} л. бензина. В моем бензобаке {self.gas} л. бензина. Вы можете залить еще {self.residue} л. бензина.')
+
+
+
+    def ride(self, distance): #Метод показывает поведения машины с учетом расстояния и затраты бензина
+        self.gasoline_consumption = int(distance * self.rate_consumption)
+
+        self.gas -= self.gasoline_consumption
+
+        if self.gas <=  0:
+            self.gas1 = self.gas + self.gasoline_consumption
+            self.mileage1 = 1000 - self.mileage
+            print(f"Ваш пробег составил {self.mileage1} км, вы потратили  {self.gas1} л. бензина.")
+            self.mileage = 1000
+            self.gas = 0
+            print(f'В бензобак {self.gas} литров. Машина сейчас остановится.')
+        else:
+            print(f"Ваш пробег составил {distance} км, вы потратили  {self.gasoline_consumption} л. бензина. В машине осталось {self.gas} л. бензина.")
+            self.mileage += distance
+
+
+
+car1 = Car()
+car2 = Car()
+
+car1.gas = 50
+car1.fill(50)
+print("")
+car1.ride(100)
+print("")
+car1.describe()
+print("")
+car1.ride(800)
+print("")
+car1.describe()
+print("")
+car1.ride(400)
+print("")
+car1.describe()
