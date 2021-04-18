@@ -20,8 +20,8 @@ class Car:
                 print('Осторожно!')
                 print(f'Вы залили в меня {gas_l} л. бензина, но мой бензобак уже полон.')
             else:
-                self.residue = self.gas_tank - self.gas
-                print(f'Вы залили в меня {gas_l} л. бензина. В моем бензобаке {self.gas} л. бензина. Вы можете залить еще {self.residue} л. бензина.')
+                self.gasoline_residue = self.gas_tank - self.gas
+                print(f'Вы залили в меня {gas_l} л. бензина. В моем бензобаке {self.gas} л. бензина. Вы можете залить еще {self.gasoline_residue} л. бензина.')
 
 
 
