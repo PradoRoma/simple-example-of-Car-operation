@@ -46,7 +46,9 @@ class Car:
 car1 = Car()
 
 car1.gas = 50
-car1.fill(50)
+car1.fill(49)
+print("")
+car1.fill(1)
 print("")
 car1.ride(100)
 print("")
