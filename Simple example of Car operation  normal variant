@@ -1,0 +1,71 @@
+class Car:
+
+    def __init__(self, gas = 0, mileage = 0):
+        self.gas = gas
+        self.mileage = mileage
+        self.__gas_tank = 100
+        self._rate_consumption = 0.1
+        self.mileage_0 = mileage
+        self.mileage_1 = 0
+
+
+    def info(self):
+        print('Информация о машине:')
+        print(f'Показатели бензина: {self.gas} л.')
+        print(f'Общий пробег машины: {self.mileage_0} км.')
+
+
+    def fill(self, gas_l):
+        self.gasoline_residue = self.__gas_tank - self.gas
+
+        if self.gas < self.__gas_tank:
+            self.gas += gas_l
+            print(f'Вы можете залить в машину еще {self.gasoline_residue} л. бензина')
+            print(f'Вы залили {gas_l} л. бензина.')
+
+            if self.gas >= self.__gas_tank:
+                self.gas = self.__gas_tank
+                print('Будьте Осторожны!')
+                print("Бензобак уже полон, возможно вы пролили бензин на асфальт.")
+
+            else:
+                self.gasoline_residue = self.__gas_tank - self.gas
+                print(f'В моем бензобаке {self.gas} л. бензина. Вы можете залить еще {self.gasoline_residue} л. бензина.')
+
+    def ride(self, distance):
+        self.gasoline_consumption = int(distance * self._rate_consumption)
+
+        self.gas -= self.gasoline_consumption
+
+        if self.gas <=  0:
+            self.gas = 0
+            self.maximum_mileage_with_gasoline = int(self.__gas_tank / self._rate_consumption)
+            print(f'В машине не осталось бензина: {self.gas} л., бензина хватило на {self.maximum_mileage_with_gasoline} км. \nМашина сейчас остановится.')
+            self.mileage_1 = self.maximum_mileage_with_gasoline
+            self.mileage_0 = self.mileage_1 + self.mileage
+
+        else:
+            print(f"Ваш пробег составил {distance} км, вы потратили  {self.gasoline_consumption} л. бензина. В машине осталось {self.gas} л. бензина.")
+            self.mileage_1 += distance
+            self.mileage_0 = self.mileage_1 + self.mileage
+
+
+
+car1 = Car(50, 100)
+car1.fill(40)
+print("")
+car1.fill(10)
+print("")
+car1.fill(10)
+print("")
+car1.ride(100)
+print("")
+car1.info()
+print("")
+car1.ride(800)
+print("")
+car1.info()
+print("")
+car1.ride(400)
+print("")
+car1.info()
